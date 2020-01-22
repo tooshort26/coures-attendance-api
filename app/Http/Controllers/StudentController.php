@@ -22,7 +22,7 @@ class StudentController extends Controller
     		],
     		$request->all()
     	);
-        if (! $token = Auth::attempt(['id_number' => $student->id_number, 'password' => $student->password] )) {
+        if (! $token = Auth::attempt(['id_number' => $student->id_number , 'password' => $request->password] )) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }          
          return $this->respondWithToken($token);
