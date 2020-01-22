@@ -18,3 +18,7 @@ $router->get('/', function () use ($router) {
 $router->post('/student', 'StudentController@store');
 $router->get('/student/{id}', 'StudentController@show');
 $router->post('/student/login', 'StudentAuthController@login');
+
+$router->get('/key', function() {
+    return \Illuminate\Support\Str::random(32);
+});

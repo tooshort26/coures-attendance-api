@@ -91,6 +91,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 |
 */
 
+
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
