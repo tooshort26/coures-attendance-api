@@ -15,10 +15,18 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/student', 'StudentController@store');
-$router->get('/student/{id}', 'StudentController@show');
-$router->post('/student/login', 'StudentAuthController@login');
-
-$router->get('/key', function() {
-    return \Illuminate\Support\Str::random(32);
+// API route group
+$router->group(['prefix' => 'api'], function () use ($router) {
+     // Matches "/api/register
+    $router->post('register', 'AuthController@register');
+	$router->post('/student', 'StudentController@store');
+	$router->get('/student/{id}', 'StudentController@show');
+	$router->post('/student/login', 'StudentAuthController@login');
 });
+
+
+
+
+/*$router->get('/key', function() {
+    return \Illuminate\Support\Str::random(32);
+});*/

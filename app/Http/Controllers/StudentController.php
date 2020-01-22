@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
 
+    public function __construct()
+    {
+         $this->middleware('auth', ['except' => ['store']]);
+    }
+
     public function store(Request $request) :Student
     {
     	return Student::firstOrCreate(

@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Student extends Model implements AuthenticatableContract, AuthorizableContract
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class Student extends Model implements AuthenticatableContract, AuthorizableContract,JWTSubject
 {
     use Authenticatable, Authorizable;
 
@@ -37,6 +39,29 @@ class Student extends Model implements AuthenticatableContract, AuthorizableCont
     ];
 
 
+
+    // Rest omitted for brevity
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+    
     public function setFirstNameAttribute($value)
     {
         return $this->attributes['firstname'] = ucfirst($value);
