@@ -14,7 +14,7 @@ class StudentController extends Controller
          $this->middleware('auth', ['except' => ['store']]);
     }
 
-    public function store(Request $request) :Student
+    public function store(Request $request)
     {
     	 $student = Student::firstOrCreate(
     		[
